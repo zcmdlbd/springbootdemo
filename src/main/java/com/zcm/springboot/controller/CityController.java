@@ -45,7 +45,7 @@ public class CityController {
      * @param model model
      * @return JSON格式数据
      */
-    @GetMapping(value = "/citys")
+    @GetMapping
     public Response<Page<City>> citys(@RequestParam(value = "page", defaultValue = "0") Integer page,
                                       @RequestParam(value = "size", defaultValue = "2") Integer size, Model model) {
         //用户列表
@@ -62,7 +62,7 @@ public class CityController {
      * @return Response
      * @throws
     */
-    @PostMapping(value = "/insertcity")
+    @PostMapping
     public Response insertCity(@RequestBody City city){
         try {
             cityService.save(city);
@@ -74,12 +74,37 @@ public class CityController {
         return  Response.yes();
     }
 
-
+    /**
+     * @author zcm
+     * @date 2019/7/12 10:31
+     * @Param
+     * @return
+     * @throws
+    */
+    @PutMapping
     public  Response updateCity(@RequestBody City city){
         if (cityService.saveOrUpdate(city)) {
             return Response.yes();
         }
-        return Response
+        return Response.no();
+    }
+
+    /**
+     * @author zcm
+     * @date 2019/7/12 10:57
+     * @Param
+     * @return
+     * @throws
+    */
+    @DeleteMapping("/{id}")
+    public Response deleteCity(@PathVariable Integer id){
+        try {
+            cityService.deleteById(id);
+        }catch (Exception e){
+            e.printStackTrace();
+            return  Response.no();
+        }
+        return  Response.yes();
     }
 
 

@@ -26,4 +26,9 @@ public class CityServiceImpl extends ServiceImpl<CityMapper, City> implements Ci
     public Page<City> findAll(Page<City> page) {
         return page.setRecords(cityMapper.findAll(page));
     }
+
+    @Override
+    public void deleteById(Integer id) {
+        cityMapper.deleteById(id);
+    }
 }

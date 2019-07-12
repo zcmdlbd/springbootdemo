@@ -15,4 +15,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface CityService extends IService<City> {
 
     Page<City> findAll (Page<City> page);
+
+    /**
+     *  根据Id删除
+     * */
+    void  deleteById(Integer id);
 }
