@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zcm.springboot.entity.City;
 import com.zcm.springboot.service.CityService;
 import com.zcm.springboot.util.Response;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.logging.Logger;
 import org.mybatis.logging.LoggerFactory;
@@ -25,11 +27,13 @@ import org.springframework.stereotype.Controller;
 @Slf4j
 @RestController
 @RequestMapping("/city")
+@Api("Swagger测试")
 public class CityController {
     @Autowired
     private CityService cityService;
 
     @GetMapping("/find")
+    @ApiOperation(value = "获取城市信息", notes = "通过城市Id获取")
     public City findById(@RequestParam(value = "id")Integer id){
         City city = new City();
         city = cityService.getById(id);
@@ -46,6 +50,7 @@ public class CityController {
      * @return JSON格式数据
      */
     @GetMapping
+    @ApiOperation(value = "获取城市信息", notes = "获取所有城市信息，分页")
     public Response<Page<City>> citys(@RequestParam(value = "page", defaultValue = "0") Integer page,
                                       @RequestParam(value = "size", defaultValue = "2") Integer size, Model model) {
         //用户列表
@@ -63,6 +68,7 @@ public class CityController {
      * @throws
     */
     @PostMapping
+    @ApiOperation(value = "添加城市信息", notes = "城市信息")
     public Response insertCity(@RequestBody City city){
         try {
             cityService.save(city);
@@ -82,6 +88,7 @@ public class CityController {
      * @throws
     */
     @PutMapping
+    @ApiOperation(value = "更新", notes = "")
     public  Response updateCity(@RequestBody City city){
         if (cityService.saveOrUpdate(city)) {
             return Response.yes();
@@ -97,6 +104,7 @@ public class CityController {
      * @throws
     */
     @DeleteMapping("/{id}")
+    @ApiOperation(value = "删除", notes = "")
     public Response deleteCity(@PathVariable Integer id){
         try {
             cityService.deleteById(id);
