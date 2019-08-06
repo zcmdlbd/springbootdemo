@@ -1,8 +1,6 @@
 package com.zcm.springboot.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
-import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -14,35 +12,24 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author zcm
- * @since 2019-07-11
+ * @since 2019-08-02
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class City extends Model<City> {
+public class SysUser extends Model<SysUser> {
 
     private static final long serialVersionUID = 1L;
 
-    /**
-     * 城市编号
-     */
-    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    /**
-     * 省份编号
-     */
-    private Integer provinceId;
+    private String username;
 
-    /**
-     * 城市名称
-     */
-    private String cityName;
+    private String password;
 
-    /**
-     * 描述
-     */
-    private String description;
+    private String role;
+
+    private String permission;
 
 
     @Override

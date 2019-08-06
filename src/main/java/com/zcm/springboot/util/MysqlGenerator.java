@@ -54,7 +54,7 @@ public class MysqlGenerator {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://127.0.0.1:3306/o2o?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=UTC");
+        dsc.setUrl("jdbc:mysql://127.0.0.1:3306/demo?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=UTC");
         dsc.setDriverName("com.mysql.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("1234");
@@ -109,7 +109,7 @@ public class MysqlGenerator {
         strategy.setEntityLombokModel(true);
         // 设置逻辑删除键
         strategy.setLogicDeleteFieldName("deleted");
-        strategy.setInclude("city");
+        strategy.setInclude("sys_user");
         //strategy.setSuperEntityColumns("id");
         //驼峰转连字符
         strategy.setControllerMappingHyphenStyle(true);
